@@ -6,6 +6,11 @@ app = Flask(__name__)
 
 cache = Cache(directory="cache/", size_limit=int(4e9))
 
+
+@app.route("/")
+def index():
+    return "welcome to ipfs-cdn!"
+
 @app.route("/ipfs/<key>")
 def ipfs(key: str):
     if key not in cache:

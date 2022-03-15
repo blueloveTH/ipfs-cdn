@@ -5,7 +5,5 @@ pidfile = 'gunicorn.pid'
 
 bind = '0.0.0.0:80'
 
-daemon = True
-
 accesslog = 'access.log'
 errorlog = 'error.log'
