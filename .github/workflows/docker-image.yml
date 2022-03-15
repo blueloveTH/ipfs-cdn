@@ -25,4 +25,4 @@ jobs:
       run: |
         export image_tag=ipfs-cdn:${GITHUB_SHA:0:7}
         docker build -t $image_tag .
-        docker push $image_tag
+        docker push blueloveth/$image_tag
