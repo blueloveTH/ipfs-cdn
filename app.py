@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request, abort
 from diskcache import Cache
 import requests
 
@@ -10,6 +10,14 @@ cache = Cache(directory="cache/", size_limit=int(4e9))
 @app.route("/")
 def index():
     return "welcome to ipfs-cdn!"
+
+@app.route("/ipfs/preload", method=["POST"])
+def preload():
+    key = request.args.get("cid", None)
+    if key is None:
+        abort(400)
+    cache.set(key=key, value=request.data)
+    return "ok", 200
 
 @app.route("/ipfs/<key>")
 def ipfs(key: str):
