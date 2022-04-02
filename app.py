@@ -11,7 +11,7 @@ cache = Cache(directory="cache/", size_limit=int(4e9))
 def index():
     return "welcome to ipfs-cdn!"
 
-@app.route("/ipfs/preload", method=["POST"])
+@app.route("/ipfs/preload", methods=["POST"])
 def preload():
     key = request.args.get("cid", None)
     if key is None:
